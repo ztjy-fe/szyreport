@@ -27,7 +27,8 @@ webpack、RequireJS、SeaJS等
 ``` javascript
 
 const szyreport = require('szyreport')
-const reportPV = szyreport.reportPV({type:'post',params:{}})
+let params = {};
+const reportPV = szyreport.reportPV(params)
 ```
 
 
