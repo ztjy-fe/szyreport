@@ -48,11 +48,13 @@ function defaultParams() {
 //PV 报数
 function reportPV(options) {
 	const opts = options || {};
+	let defaultaliyunUrl = '.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track?APIVersion=0.6.0'
+	let defaultdtlogUrl = '.szy.cn/sdo_bfn_pv'
 	this.url =  {
-		//aliyunUrl: 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track',//线上
-		aliyunUrl: 'https://ztjy-test.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track',//测试环境
-		dtlogUrl: 'https://alpha-dtlog.szy.cn/sdo_bfn_pv', //测试环境
-		//dtlogUrl:'https://dtlog.szy.cn/sdo_bfn_pv'//线上环境
+		// aliyunUrl: 'https://ztjy' + defaultURL,//线上
+		aliyunUrl: 'https://ztjy-test' + defaultURL,//测试环境
+		dtlogUrl: 'https://alpha-dtlog' + defaultdtlogUrl, //测试环境
+		//dtlogUrl:'https://dtlog' + defaultdtlogUrl //线上环境
 	};
 	this.params = assign(opts, defaultParams());
 	sendEvent(this.url, this.params)
@@ -61,11 +63,13 @@ function reportPV(options) {
 //埋点报数
 function reportEvent(options) {
 	const opts = options || {};
+	let defaultaliyunUrl = '.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track?APIVersion=0.6.0'
+	let defaultdtlogUrl = '.szy.cn/sdo_bfn_event'
 	this.url =  {
-		//aliyunUrl: 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track',//线上
-		aliyunUrl: 'https://ztjy-test.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track',//测试环境
-		dtlogUrl: 'https://alpha-dtlog.szy.cn/sdo_bfn_event', //测试环境
-		//dtlogUrl:'https://dtlog.szy.cn/sdo_bfn_event' //线上环境
+		// aliyunUrl: 'https://ztjy' + defaultURL,//线上
+		aliyunUrl: 'https://ztjy-test' + defaultURL,//测试环境
+		dtlogUrl: 'https://alpha-dtlog' + defaultdtlogUrl, //测试环境
+		//dtlogUrl:'https://dtlog' + defaultdtlogUrl //线上环境
 	};
 	this.params = assign(opts, defaultParams());
 	sendEvent(this.url, this.params)
