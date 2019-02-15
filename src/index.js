@@ -51,10 +51,10 @@ function reportPV(options) {
 	let defaultaliyunUrl = '.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track?APIVersion=0.6.0'
 	let defaultdtlogUrl = '/sdo_bfn_pv'
 	this.url =  {
-		// aliyunUrl: 'https://ztjy' + defaultURL,//线上
+		//aliyunUrl: 'https://ztjy' + defaultaliyunUrl,//线上
 		aliyunUrl: 'https://ztjy-test' + defaultaliyunUrl,//测试环境
-		dtlogUrl: 'http://alpha-dtlog.szy.com' + defaultdtlogUrl, //测试环境
-		//dtlogUrl:'http://dtlog.szy.cn' + defaultdtlogUrl //线上环境
+		//dtlogUrl:'http://dtlog.szy.cn' + defaultdtlogUrl, //线上环境
+		dtlogUrl: 'http://alpha-dtlog.szy.com' + defaultdtlogUrl //测试环境
 	};
 	this.params = assign(opts, defaultParams());
 	sendEvent(this.url, this.params)
@@ -66,10 +66,10 @@ function reportEvent(options) {
 	let defaultaliyunUrl = '.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track?APIVersion=0.6.0'
 	let defaultdtlogUrl = '/sdo_bfn_event'
 	this.url =  {
-		// aliyunUrl: 'https://ztjy' + defaultURL,//线上
+		// aliyunUrl: 'https://ztjy' + defaultaliyunUrl,//线上
 		aliyunUrl: 'https://ztjy-test' + defaultaliyunUrl,//测试环境
-		dtlogUrl: 'http://alpha-dtlog.szy.com' + defaultdtlogUrl, //测试环境
-		//dtlogUrl:'http://dtlog.szy.cn' + defaultdtlogUrl //线上环境
+		//dtlogUrl:'http://dtlog.szy.cn' + defaultdtlogUrl, //线上环境
+		dtlogUrl: 'http://alpha-dtlog.szy.com' + defaultdtlogUrl //测试环境
 	};
 	this.params = assign(opts, defaultParams());
 	sendEvent(this.url, this.params)

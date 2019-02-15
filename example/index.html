@@ -16,7 +16,19 @@
 	<body>
 	<script src='../dist/szyreport.min.js'></script>
 	<script>
-		let params = {};
+		let params = {
+			'status': 2, //状态
+			'trial': '',//试看
+			'stay_time': '',//时长
+			'progress': '',//浏览进度
+			'page_category': '',//页面大类
+			'page': '',// 页面
+			'page_id': '',//页面ID
+			'parm': '',//自定义参数
+			'f_page': '',//来路页面
+			'f_page_id': '',//来路页面ID
+			'f_page_location': '',//来路页面位置
+		};
 		szyreport.reportPV(params);
 		szyreport.reportEvent(params);
 	</script>
