@@ -4,9 +4,9 @@
  * @param  {String} params
  * @return {Object}
  */
-const assign = require('./assign')
-const getPlatform = require('./getPlatform')
-const getOsVersion = require('./getOsVersion')
+const assign = require('./assign.js')
+const getPlatform = require('./getPlatform.js')
+const getOsVersion = require('./getOsVersion.js')
 const Ajax = require('./ajax')
 // 公共参数部分
 function defaultParams() {
@@ -49,12 +49,12 @@ function defaultParams() {
 function reportPV(options) {
 	const opts = options || {};
 	let defaultaliyunUrl = '.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track?APIVersion=0.6.0'
-	let defaultdtlogUrl = '.szy.cn/sdo_bfn_pv'
+	let defaultdtlogUrl = '/sdo_bfn_pv'
 	this.url =  {
 		// aliyunUrl: 'https://ztjy' + defaultURL,//线上
-		aliyunUrl: 'https://ztjy-test' + defaultURL,//测试环境
-		dtlogUrl: 'https://alpha-dtlog' + defaultdtlogUrl, //测试环境
-		//dtlogUrl:'https://dtlog' + defaultdtlogUrl //线上环境
+		aliyunUrl: 'https://ztjy-test' + defaultaliyunUrl,//测试环境
+		dtlogUrl: 'http://alpha-dtlog.szy.com' + defaultdtlogUrl, //测试环境
+		//dtlogUrl:'http://dtlog.szy.cn' + defaultdtlogUrl //线上环境
 	};
 	this.params = assign(opts, defaultParams());
 	sendEvent(this.url, this.params)
@@ -64,12 +64,12 @@ function reportPV(options) {
 function reportEvent(options) {
 	const opts = options || {};
 	let defaultaliyunUrl = '.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track?APIVersion=0.6.0'
-	let defaultdtlogUrl = '.szy.cn/sdo_bfn_event'
+	let defaultdtlogUrl = '/sdo_bfn_event'
 	this.url =  {
 		// aliyunUrl: 'https://ztjy' + defaultURL,//线上
-		aliyunUrl: 'https://ztjy-test' + defaultURL,//测试环境
-		dtlogUrl: 'https://alpha-dtlog' + defaultdtlogUrl, //测试环境
-		//dtlogUrl:'https://dtlog' + defaultdtlogUrl //线上环境
+		aliyunUrl: 'https://ztjy-test' + defaultaliyunUrl,//测试环境
+		dtlogUrl: 'http://alpha-dtlog.szy.com' + defaultdtlogUrl, //测试环境
+		//dtlogUrl:'http://dtlog.szy.cn' + defaultdtlogUrl //线上环境
 	};
 	this.params = assign(opts, defaultParams());
 	sendEvent(this.url, this.params)

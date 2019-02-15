@@ -17,3 +17,5 @@ var assign = function (target) {
 	}
 	return output;
 };
+
+module.exports = assign;

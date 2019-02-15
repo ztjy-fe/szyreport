@@ -3,7 +3,7 @@
  * @param
  * @return {Number} platform
  */
-var getPlatform = function () {
+function getPlatform() {
 	var ua = window.navigator.userAgent;
 	let platform = 0;
 	if(ua.indexOf('Android') > -1){
@@ -15,3 +15,5 @@ var getPlatform = function () {
 	}
 	return platform;
 }
+
+module.exports = getPlatform;

@@ -30,13 +30,14 @@ function Ajax(type, url, data, success, failed) {
 
 	if(type === 'GET'){
 		if(data){
-			xhr.open('GET', url + '?' + data, true);
+			xhr.open('GET', url + '&' + data, true);
 		} else {
-			xhr.open('GET', url + '?t=' + random, true);
+			xhr.open('GET', url + '&t=' + random, true);
 		}
 		xhr.send();
 
 	} else if(type === 'POST'){
+		console.log('url',url);
 		xhr.open('POST', url, true);
 		// 如果需要像 html 表单那样 POST 数据，请使用 setRequestHeader() 来添加 http 头。
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -56,3 +57,5 @@ function Ajax(type, url, data, success, failed) {
 		}
 	}
 }
+
+module.exports = Ajax;

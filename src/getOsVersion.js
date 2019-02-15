@@ -20,3 +20,5 @@ var getOsVersion = function() {
 	}
 	return version;
 }
+
+module.exports = getOsVersion;
