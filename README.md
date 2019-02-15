@@ -22,13 +22,13 @@
 $ npm install --save-dev szyreport
 ```
 
-webpack、RequireJS、SeaJS等
 
 ``` javascript
 
 const szyreport = require('szyreport')
 let params = {};
 const reportPV = szyreport.reportPV(params)
+const reportEvent = szyreport.reportEvent(params)
 ```
 
 
