@@ -1,10 +1,6 @@
 /**
- * @desc   ajax函数
- * @param  {String} type
- * @param  {String} url
- * @param  {Object} data
- * @param  {Function} success
- * @param  {Function} failed
+ * @desc   api函数 获取当前的url
+ * @return {Object}
  */
 // 统一域名的接口地址
 function api() {
