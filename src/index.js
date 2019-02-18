@@ -8,6 +8,8 @@ const assign = require('./assign.js')
 const getPlatform = require('./getPlatform.js')
 const getOsVersion = require('./getOsVersion.js')
 const Ajax = require('./ajax')
+const api = require('./api')
+console.log('api',JSON.stringify(api))
 // 公共参数部分
 function defaultParams() {
 	let os = getPlatform(); // 操作系统
@@ -46,33 +48,44 @@ function defaultParams() {
 }
 
 //PV 报数
-function reportPV(options) {
+function reportPV(options, prefix) {
 	const opts = options || {};
-	let defaultaliyunUrl = '.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track?APIVersion=0.6.0'
-	let defaultdtlogUrl = '/sdo_bfn_pv'
-	this.url =  {
-		//aliyunUrl: 'https://ztjy' + defaultaliyunUrl,//线上
-		aliyunUrl: 'https://ztjy-test' + defaultaliyunUrl,//测试环境
-		//dtlogUrl:'http://dtlog.szy.cn' + defaultdtlogUrl, //线上环境
-		dtlogUrl: 'http://alpha-dtlog.szy.com' + defaultdtlogUrl //测试环境
-	};
+	let url = null;
+	if(prefix !== undefined && prefix ==='alpha') {
+		url =  {
+			aliyunUrl:api.sdo_bfn_pv,
+			dtlogUrl:api.dtlogUrl + '/sdo_bfn_pv'
+		};
+
+	} else {
+		url =  {
+			aliyunUrl: 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track?APIVersion=0.6.0',
+			dtlogUrl: 'http://dtlog.szy.cn' + '/sdo_bfn_pv'
+		};
+	}
+
 	this.params = assign(opts, defaultParams());
-	sendEvent(this.url, this.params)
+	sendEvent(url, this.params)
 }
 
 //埋点报数
-function reportEvent(options) {
+function reportEvent(options, prefix) {
 	const opts = options || {};
-	let defaultaliyunUrl = '.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track?APIVersion=0.6.0'
-	let defaultdtlogUrl = '/sdo_bfn_event'
-	this.url =  {
-		// aliyunUrl: 'https://ztjy' + defaultaliyunUrl,//线上
-		aliyunUrl: 'https://ztjy-test' + defaultaliyunUrl,//测试环境
-		//dtlogUrl:'http://dtlog.szy.cn' + defaultdtlogUrl, //线上环境
-		dtlogUrl: 'http://alpha-dtlog.szy.com' + defaultdtlogUrl //测试环境
-	};
+	let url = null;
+	if (prefix !== undefined && prefix ==='alpha') {
+		url =  {
+			aliyunUrl:api.sdo_bfn_event,
+			dtlogUrl:api.dtlogUrl + '/sdo_bfn_event'
+		};
+	} else {
+		url =  {
+			aliyunUrl: 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track?APIVersion=0.6.0',
+			dtlogUrl: 'http://dtlog.szy.cn' + '/sdo_bfn_event'
+		};
+	}
+
 	this.params = assign(opts, defaultParams());
-	sendEvent(this.url, this.params)
+	sendEvent(url, this.params)
 }
 
 // 发送ajax请求
