@@ -19,11 +19,6 @@ function Ajax(type, url, data, success, failed) {
 	var type = type.toUpperCase();
 	// 用于清除缓存
 	var random = Math.random();
-
-	// if(typeof data == 'object'){
-	//
-	// }
-
 	if(type === 'GET'){
 		if(data){
 			var str = '';
