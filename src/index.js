@@ -15,11 +15,7 @@ const Ajax = require('./ajax')
 function defaultParams() {
 	let os = getPlatform(); // 操作系统
 	let	os_ver = getOsVersion(); // 系统版本
-	let params =  {
-		'os': os,
-		'os_ver': os_ver
-	}
-	let defaultParams = {
+	return {
 		'platf': 3, //平台
 		'dev_id': '',//设备ID
 		'imei': '',//手机串号
@@ -43,9 +39,11 @@ function defaultParams() {
 		'country': '',//国家
 		'province': '',//省份
 		'city': '',//城市
-		'county': ''//区县
+		'county': '',//区县
+		'os': os,// 操作系统
+		'os_ver': os_ver // 系统版本
 	};
-	return Object.assign(params, defaultParams);
+
 }
 
 /**
@@ -61,6 +59,10 @@ function getUrl(prefix, prams) {
 			aliyunUrl = 'https://ztjy-test.cn-hangzhou.log.aliyuncs.com/logstores/' + prams + '/track?APIVersion=0.6.0'
 			dtlogUrl = 'http://alpha-dtlog.szy.com/' + prams
 			break
+		case 'rc':
+			aliyunUrl = 'https://ztjy-test.cn-hangzhou.log.aliyuncs.com/logstores/' + prams + '/track?APIVersion=0.6.0'
+			dtlogUrl = 'http://dtlog.szy.com/' + prams
+			break
 		default:
 			aliyunUrl = 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/'+ prams + '/track?APIVersion=0.6.0'
 			dtlogUrl = 'http://dtlog.szy.cn/' + prams
@@ -74,21 +76,20 @@ function getUrl(prefix, prams) {
 //PV 报数
 function reportPV(options, prefix) {
 	const opts = options || {};
-	let url = getUrl(prefix, 'sdo_bfn_pv');
-	this.params = Object.assign(opts, defaultParams());
-	sendEvent(url, this.params)
+	let params = Object.assign(opts, defaultParams());
+	sendEvent(prefix, params, 'sdo_bfn_pv')
 }
 
 //埋点报数
 function reportEvent(options, prefix) {
 	const opts = options || {};
-	let url = getUrl(prefix, 'sdo_bfn_event');
-	this.params = Object.assign(opts, defaultParams());
-	sendEvent(url, this.params)
+	let params = Object.assign(opts, defaultParams());
+	sendEvent(prefix, params, 'sdo_bfn_event')
 }
 
 // 发送ajax请求
-function sendEvent(url,params) {
+function sendEvent(prefix, params, sdo_bfn) {
+	let url = getUrl(prefix, sdo_bfn);
 	//  发送阿里云服务器
 	Ajax('get', url.aliyunUrl, params, function(data){
 		console.log(data);
