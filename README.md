@@ -6,7 +6,7 @@
 
 ## 安装使用
 
-1. 直接下载http://code.szy.net/front-end/static/blob/features.v6.7.1-szyreport/javascript/vendor/log/szyreport.min.js(https://github.com/ztjy-fe/szyreport/blob/master/dist/szyreport.min.js)使用 
+1. 直接下载[http://code.szy.net/front-end/static/blob/features.v6.7.1-szyreport/javascript/vendor/log/szyreport.min.js](https://github.com/ztjy-fe/szyreport/blob/master/dist/szyreport.min.js)使用  
 2. 使用npm安装
 
 ### 浏览器:
