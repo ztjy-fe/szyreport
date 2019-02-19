@@ -30,7 +30,7 @@ let params = {};
 
 2.1.测试环境下调用：
 ```
-let prefix = 'alpha' // 测试环境
+const prefix = 'alpha' // 测试环境
 szyreport.reportPV(params, prefix)//测试环境pv报数
 szyreport.reportEvent(params, prefix）// 测试环境埋点报数
 ```
