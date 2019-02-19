@@ -7,8 +7,11 @@
 const getPlatform = require('./getPlatform.js')
 const getOsVersion = require('./getOsVersion.js')
 const Ajax = require('./ajax')
-console.log('api',JSON.stringify(api))
-// 公共参数部分
+
+/**
+ * @desc   公共参数部分
+ * @return {Object}
+ */
 function defaultParams() {
 	let os = getPlatform(); // 操作系统
 	let	os_ver = getOsVersion(); // 系统版本
@@ -46,36 +49,32 @@ function defaultParams() {
 }
 
 /**
- * @desc   api函数 获取当前的url
+ * @desc   getUrl函数 获取当前的url
  * @param  {String} prefix
  * @return {Object}
  */
-function getUrl(prefix) {
-	let sdo_bfn_pv = ''
-	let sdo_bfn_event = ''
+function getUrl(prefix, prams) {
+	let aliyunUrl = ''
 	let dtlogUrl = ''
 	switch (prefix) {
 		case 'alpha':
-			sdo_bfn_pv = 'https://ztjy-test.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track?APIVersion=0.6.0'
-			sdo_bfn_event = 'https://ztjy-test.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track?APIVersion=0.6.0'
-			dtlogUrl = 'http://alpha-dtlog.szy.com'
+			aliyunUrl = 'https://ztjy-test.cn-hangzhou.log.aliyuncs.com/logstores/' + prams + '/track?APIVersion=0.6.0'
+			dtlogUrl = 'http://alpha-dtlog.szy.com/' + prams
 			break
 		default:
-			sdo_bfn_pv = 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track?APIVersion=0.6.0'
-			sdo_bfn_event = 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track?APIVersion=0.6.0'
-			dtlogUrl = 'http://dtlog.szy.cn'
+			aliyunUrl = 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/'+ prams + '/track?APIVersion=0.6.0'
+			dtlogUrl = 'http://dtlog.szy.cn/' + prams
 			break
 	}
 	return  {
-		sdo_bfn_pv: sdo_bfn_pv, // 阿里云pv url
-		sdo_bfn_event: sdo_bfn_event,// 阿里云埋点 url
-		dtlogUrl: dtlogUrl
+		aliyunUrl: aliyunUrl, // 阿里云url
+		dtlogUrl: dtlogUrl // 大数据url
 	};
 }
 //PV 报数
 function reportPV(options, prefix) {
 	const opts = options || {};
-	let url = getUrl(prefix);
+	let url = getUrl(prefix, 'sdo_bfn_pv');
 	this.params = Object.assign(opts, defaultParams());
 	sendEvent(url, this.params)
 }
@@ -83,7 +82,7 @@ function reportPV(options, prefix) {
 //埋点报数
 function reportEvent(options, prefix) {
 	const opts = options || {};
-	let url = getUrl(prefix);
+	let url = getUrl(prefix, 'sdo_bfn_event');
 	this.params = Object.assign(opts, defaultParams());
 	sendEvent(url, this.params)
 }
