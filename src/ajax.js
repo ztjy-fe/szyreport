@@ -3,18 +3,12 @@
  * @param  {String} type
  * @param  {String} url
  * @param  {Object} data
- * @param  {Function} success
- * @param  {Function} failed
+ * @param  {Function} callback
  */
 
-function Ajax(type, url, data, success, failed) {
+function Ajax(type, url, data, callback) {
 	// 创建ajax对象
-	var xhr = null;
-	if(window.XMLHttpRequest){
-		xhr = new XMLHttpRequest();
-	} else {
-		xhr = new ActiveXObject('Microsoft.XMLHTTP')
-	}
+	var xhr = new XMLHttpRequest();
 
 	var type = type.toUpperCase();
 	// 用于清除缓存
@@ -35,8 +29,6 @@ function Ajax(type, url, data, success, failed) {
 	} else if(type === 'POST'){
 		data = JSON.stringify(data)
 		xhr.open('POST', url, true);
-		// 如果需要像 html 表单那样 POST 数据，请使用 setRequestHeader() 来添加 http 头。
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send(data);
 	}
 
@@ -44,11 +36,7 @@ function Ajax(type, url, data, success, failed) {
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status == 200){
-				success(xhr.responseText);
-			} else {
-				if(failed){
-					failed(xhr.status);
-				}
+				callback(xhr.responseText);
 			}
 		}
 	}

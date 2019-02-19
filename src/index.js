@@ -4,11 +4,9 @@
  * @param  {String} params
  * @return {Object}
  */
-const assign = require('./assign.js')
 const getPlatform = require('./getPlatform.js')
 const getOsVersion = require('./getOsVersion.js')
 const Ajax = require('./ajax')
-const api = require('./api')
 console.log('api',JSON.stringify(api))
 // 公共参数部分
 function defaultParams() {
@@ -44,47 +42,49 @@ function defaultParams() {
 		'city': '',//城市
 		'county': ''//区县
 	};
-	return assign(params, defaultParams);
+	return Object.assign(params, defaultParams);
 }
 
+/**
+ * @desc   api函数 获取当前的url
+ * @param  {String} prefix
+ * @return {Object}
+ */
+function getUrl(prefix) {
+	let sdo_bfn_pv = ''
+	let sdo_bfn_event = ''
+	let dtlogUrl = ''
+	switch (prefix) {
+		case 'alpha':
+			sdo_bfn_pv = 'https://ztjy-test.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track?APIVersion=0.6.0'
+			sdo_bfn_event = 'https://ztjy-test.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track?APIVersion=0.6.0'
+			dtlogUrl = 'http://alpha-dtlog.szy.com'
+			break
+		default:
+			sdo_bfn_pv = 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track?APIVersion=0.6.0'
+			sdo_bfn_event = 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track?APIVersion=0.6.0'
+			dtlogUrl = 'http://dtlog.szy.cn'
+			break
+	}
+	return  {
+		sdo_bfn_pv: sdo_bfn_pv, // 阿里云pv url
+		sdo_bfn_event: sdo_bfn_event,// 阿里云埋点 url
+		dtlogUrl: dtlogUrl
+	};
+}
 //PV 报数
 function reportPV(options, prefix) {
 	const opts = options || {};
-	let url = null;
-	if(prefix !== undefined && prefix ==='alpha') {
-		url =  {
-			aliyunUrl:api.sdo_bfn_pv,
-			dtlogUrl:api.dtlogUrl + '/sdo_bfn_pv'
-		};
-
-	} else {
-		url =  {
-			aliyunUrl: 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_pv/track?APIVersion=0.6.0',
-			dtlogUrl: 'http://dtlog.szy.cn' + '/sdo_bfn_pv'
-		};
-	}
-
-	this.params = assign(opts, defaultParams());
+	let url = getUrl(prefix);
+	this.params = Object.assign(opts, defaultParams());
 	sendEvent(url, this.params)
 }
 
 //埋点报数
 function reportEvent(options, prefix) {
 	const opts = options || {};
-	let url = null;
-	if (prefix !== undefined && prefix ==='alpha') {
-		url =  {
-			aliyunUrl:api.sdo_bfn_event,
-			dtlogUrl:api.dtlogUrl + '/sdo_bfn_event'
-		};
-	} else {
-		url =  {
-			aliyunUrl: 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/sdo_bfn_event/track?APIVersion=0.6.0',
-			dtlogUrl: 'http://dtlog.szy.cn' + '/sdo_bfn_event'
-		};
-	}
-
-	this.params = assign(opts, defaultParams());
+	let url = getUrl(prefix);
+	this.params = Object.assign(opts, defaultParams());
 	sendEvent(url, this.params)
 }
 
