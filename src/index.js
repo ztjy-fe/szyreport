@@ -61,7 +61,7 @@ function getUrl(prefix, prams) {
 			break
 		case 'rc':
 			aliyunUrl = 'https://ztjy-test.cn-hangzhou.log.aliyuncs.com/logstores/' + prams + '/track?APIVersion=0.6.0'
-			dtlogUrl = 'http://dtlog.szy.com/' + prams
+			dtlogUrl = 'http://alpha-dtlog.szy.com/' + prams
 			break
 		default:
 			aliyunUrl = 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/'+ prams + '/track?APIVersion=0.6.0'
