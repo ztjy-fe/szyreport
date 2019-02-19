@@ -11,7 +11,7 @@
 
 ### 浏览器:
 ``` html
-  <script src="http://code.szy.net/front-end/static/blob/features.v6.7.1-szyreport/javascript/vendor/log/szyreport.min.js"></script>
+  <script src="https://static.szy.cn/javascript/vendor/log/szyreport.min.js"></script>
   <script>
       var reportPV = szyreport.reportPV(params)
   </script>
