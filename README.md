@@ -6,12 +6,12 @@
 
 ## 安装使用
 
-1. 直接下载`dist`目录下的[szyreport.min.js](https://github.com/ztjy-fe/szyreport/blob/master/dist/szyreport.min.js)使用，支持UMD通用模块规范  
+1. 直接下载http://code.szy.net/front-end/static/blob/features.v6.7.1-szyreport/javascript/vendor/log/szyreport.min.js(https://github.com/ztjy-fe/szyreport/blob/master/dist/szyreport.min.js)使用 
 2. 使用npm安装
 
 ### 浏览器:
 ``` html
-  <script src="szyreport.min.js"></script>
+  <script src="http://code.szy.net/front-end/static/blob/features.v6.7.1-szyreport/javascript/vendor/log/szyreport.min.js"></script>
   <script>
       var reportPV = szyreport.reportPV(params)
   </script>
