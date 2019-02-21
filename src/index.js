@@ -61,7 +61,7 @@ function getUrl(prefix, prams) {
 			break
 		default:
 			aliyunUrl = 'https://ztjy.cn-hangzhou.log.aliyuncs.com/logstores/'+ prams + '/track?APIVersion=0.6.0'
-			dtlogUrl = 'http://dtlog.szy.cn/' + prams
+			dtlogUrl = 'https://dtlog.szy.cn/' + prams
 			break
 	}
 	return  {
