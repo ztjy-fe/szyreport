@@ -77,14 +77,15 @@ function reportPV(options, prefix) {
 }
 
 //埋点报数
-function reportEvent(options, prefix) {
+function reportEvent(options, prefix, callback) {
 	const opts = options || {};
 	let params = Object.assign(opts, defaultParams());
-	sendEvent(prefix, params, 'sdo_bfn_event')
+	sendEvent(prefix, params, 'sdo_bfn_event', callback)
+
 }
 
 // 发送ajax请求
-function sendEvent(prefix, params, sdo_bfn) {
+function sendEvent(prefix, params, sdo_bfn, callback) {
 	let url = getUrl(prefix, sdo_bfn);
 	//  发送阿里云服务器
 	Ajax('get', url.aliyunUrl, params, function(data){
@@ -99,8 +100,31 @@ function sendEvent(prefix, params, sdo_bfn) {
 	}, function(error){
 		console.log(error);
 	});
-}
+	if(callback) {
+		let p1 = new Promise((resolve, reject) => {
+			//  发送阿里云服务器
+			Ajax('get', url.aliyunUrl, params, function(data){
+				resolve(data)
+			}, function(error){
+				reject(error)
+			});
+		})
 
+		let p2 = new Promise((resolve, reject) => {
+			//  发送大数据服务器
+			Ajax('post', url.dtlogUrl, params, function(data){
+				resolve(data);
+			}, function(error){
+				reject(error);
+			});
+		})
+		Promise.all([p1, p2]).then((result) => {
+			callback && callback();
+		}).catch((error) => {
+			callback && callback();
+		})
+	}
+}
 
 
 module.exports = {

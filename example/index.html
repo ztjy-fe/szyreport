@@ -34,7 +34,16 @@
 		szyreport.reportEvent(params, prefix);
 
 		// szyreport.reportPV(params);
-		// szyreport.reportEvent(params);
+		// szyreport.reportEvent(params,'',function(){
+		// 	alert(1123)
+		// });
+		function clckevent() {
+			szyreport.reportEvent(params,'',function(){
+				alert(1123)
+			});
+		}
+
 	</script>
+	<a href="https://www.baidu.com" id="a" onclick="clckevent()">点击测试埋点</a>
 	</body>
 </html>
