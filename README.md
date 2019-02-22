@@ -16,7 +16,7 @@
       let params = {
         data: {}, //页面报数参数（必填）
         prefix:'alpha',// 测试环境'alpha'，线上环境''（选填）
-        callback: () =>{} //reportEvent （选填）
+        callback: () =>{} //埋点报数时需要的回调函数 （选填）
       }
       szyreport.reportPV(params);// PV 报数
       szyreport.reportEvent(params);// 埋点报数
@@ -42,10 +42,10 @@ import szyreport from 'szyreport'
 let params = {
     data: {}, //页面报数参数（必填）
     prefix:'alpha',// 测试环境'alpha'，线上环境''（选填）
-    callback: () =>{} //reportEvent （选填）
+    callback: () =>{} //埋点报数时需要的回调函数 （选填）
 }
-const prefix = 'alpha' // 测试环境
-szyreport.reportPV(params); //测试环境pv报数   
-szyreport.reportEvent(params);// 测试环境埋点报数
+
+szyreport.reportPV(params); //pv报数   
+szyreport.reportEvent(params);//埋点报数
 
 ```
