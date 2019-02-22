@@ -103,7 +103,8 @@ function sendEvent(options) {
 	if(opts.sdo_bfn === 'sdo_bfn_event') {
 
 		let p1 = new Promise((resolve, reject) => {
-			let aliyunParams = {
+			//  发送阿里云服务器
+			Ajax({
 				type: 'get',
 				url: url.aliyunUrl,
 				data:opts.data,
@@ -113,14 +114,13 @@ function sendEvent(options) {
 				'error': (res) => {
 					reject(res)
 				}
-			}
-			//  发送阿里云服务器
-			Ajax(aliyunParams);
+			});
 		})
 
 
 		let p2 = new Promise((resolve, reject) => {
-			let dtlogParams = {
+			//  发送大数据服务器
+			Ajax({
 				type: 'post',
 				url: url.dtlogUrl,
 				data:opts.data,
@@ -130,9 +130,7 @@ function sendEvent(options) {
 				'error': (res) => {
 					reject(res)
 				}
-			}
-			//  发送大数据服务器
-			Ajax(dtlogParams);
+			});
 		})
 		Promise.all([p1, p2]).then((result) => {
 			opts.callback && opts.callback();
@@ -141,7 +139,7 @@ function sendEvent(options) {
 		})
 	} else {
 		//  发送阿里云服务器
-		let aliyunParams = {
+		Ajax({
 			type: 'get',
 			url: url.aliyunUrl,
 			data:opts.data,
@@ -151,11 +149,10 @@ function sendEvent(options) {
 			'error': (res) => {
 				console.log(res);
 			}
-		}
-
+		});
 		//  发送大数据服务器
-		Ajax(aliyunParams);
-		let dtlogParams = {
+
+		Ajax({
 			type: 'post',
 			url: url.dtlogUrl,
 			data:opts.data,
@@ -165,9 +162,7 @@ function sendEvent(options) {
 			'error': (res) => {
 				console.log(res)
 			}
-		}
-
-		Ajax(dtlogParams);
+		});
 	}
 }
 
