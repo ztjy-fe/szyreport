@@ -115,7 +115,6 @@ function sendEvent(options) {
 				}
 			}
 			//  发送阿里云服务器
-			console.log('2222', ajaxParams)
 			Ajax(ajaxParams);
 		})
 

@@ -1,26 +1,13 @@
 /**
  * @desc   ajax函数
- * @param  {String} type
- * @param  {String} url
- * @param  {Object} data
- * @param  {Function} callback
+ * @param  {String} option.type 请求参数
+ * @param  {String} option.url 请求url
+ * @param  {Object} option.data  请求数据
+ * @param  {Function} callback 回调函数
  */
 
 function Ajax(options) {
 	let opt = options || {};
-	console.log('333',opt)
-	// type, url, data, callback
-	// let ajaxParams1 = {
-	// 	method: 'post',
-	// 	url: url.dtlogUrl,
-	// 	data:opts.data,
-	// 	'success':(res) => {
-	// 		resolve(res)
-	// 	},
-	// 	'error': (res) => {
-	// 		reject(res)
-	// 	}
-	// }
 	// 创建ajax对象
 	var xhr = new XMLHttpRequest();
 

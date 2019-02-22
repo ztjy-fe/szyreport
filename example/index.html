@@ -30,11 +30,11 @@
 			'f_page_location': '',//来路页面位置
 		};
 		let prefix = 'alpha'
-		szyreport.reportPV({
+		szyreport.reportPV({ //pv 报数
 			prefix: prefix,// 测试环境 'alpha', 线上环境不传或者传''
 			data:params // 页面报数参数
 		});
-		szyreport.reportEvent({
+		szyreport.reportEvent({ //  埋点报数
 			prefix: prefix,// 测试环境 'alpha', 线上环境不传或者传''
 			data: params,// 页面报数参数
 			callback: () => { // 埋点报数支持 回调函数 （可选项）
@@ -42,6 +42,6 @@
 			}
 		});
 	</script>
-	<a href="javascript:;" id="a" onclick="clckevent()">点击测试埋点</a>
+
 	</body>
 </html>
