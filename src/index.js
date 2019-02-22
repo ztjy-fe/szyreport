@@ -87,20 +87,8 @@ function reportEvent(options, prefix, callback) {
 // 发送ajax请求
 function sendEvent(prefix, params, sdo_bfn, callback) {
 	let url = getUrl(prefix, sdo_bfn);
-	//  发送阿里云服务器
-	Ajax('get', url.aliyunUrl, params, function(data){
-		console.log(data);
-	}, function(error){
-		console.log(error);
-	});
 
-	//  发送大数据服务器
-	Ajax('post', url.dtlogUrl, params, function(data){
-		console.log(data);
-	}, function(error){
-		console.log(error);
-	});
-	if(callback) {
+	if(sdo_bfn === 'sdo_bfn_event') {
 		let p1 = new Promise((resolve, reject) => {
 			//  发送阿里云服务器
 			Ajax('get', url.aliyunUrl, params, function(data){
@@ -123,6 +111,20 @@ function sendEvent(prefix, params, sdo_bfn, callback) {
 		}).catch((error) => {
 			callback && callback();
 		})
+	} else {
+		//  发送阿里云服务器
+		Ajax('get', url.aliyunUrl, params, function(data){
+			console.log(data);
+		}, function(error){
+			console.log(error);
+		});
+
+		//  发送大数据服务器
+		Ajax('post', url.dtlogUrl, params, function(data){
+			console.log(data);
+		}, function(error){
+			console.log(error);
+		});
 	}
 }
 

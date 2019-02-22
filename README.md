@@ -32,12 +32,17 @@ let params = {};
 ```
 const prefix = 'alpha' // 测试环境
 szyreport.reportPV(params, prefix)//测试环境pv报数
-szyreport.reportEvent(params, prefix）// 测试环境埋点报数
+szyreport.reportEvent(params, prefix,function(){ // 测试环境埋点报数
+    console.log(123)
+}）
+
 ```
 2.2.线上环境下调用
 ```
 szyreport.reportPV(params)//线上环境pv报数
-szyreport.reportEvent(params）// 线上环境埋点报数
+szyreport.reportEvent(params,undefined,function(){ // 线上环境埋点报数
+    console.log(123)
+}）
 ```
 
 

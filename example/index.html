@@ -29,21 +29,23 @@
 			'f_page_id': '',//来路页面ID
 			'f_page_location': '',//来路页面位置
 		};
-		let prefix = 'alpha' // 测试环境
-		szyreport.reportPV(params, prefix);
-		szyreport.reportEvent(params, prefix);
+		// let prefix = 'alpha' // 测试环境
+		// szyreport.reportPV(params, prefix);
+		// szyreport.reportEvent(params,prefix,function(){
+		// 	console.log(123);
+		// });
 
-		// szyreport.reportPV(params);
+		szyreport.reportPV(params);
 		// szyreport.reportEvent(params,'',function(){
 		// 	alert(1123)
 		// });
-		function clckevent() {
-			szyreport.reportEvent(params,'',function(){
-				alert(1123)
-			});
-		}
+		// function clckevent() {
+		// 	szyreport.reportEvent(params,'',function(){
+		// 		alert(1123)
+		// 	});
+		// }
 
 	</script>
-	<a href="https://www.baidu.com" id="a" onclick="clckevent()">点击测试埋点</a>
+	<a href="javascript:;" id="a" onclick="clckevent()">点击测试埋点</a>
 	</body>
 </html>
