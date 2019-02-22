@@ -6,10 +6,13 @@
 
 ### 安装使用
 
-1. 直接下载[https://static.szy.cn/javascript/vendor/log/szyreport.min.js](https://static.szy.cn/javascript/vendor/log/szyreport.min.js)使用  
+1. 直接下载[https://static.szy.cn/javascript/vendor/log/szyreport.min.js](https://static.szy.cn/javascript/vendor/log/szyreport.min.js)使用 
+ 
+2.使用cdn
+```
+<script src="https://static.szy.cn/javascript/vendor/log/szyreport.min.js"></script>
+```
 
-
-浏览器:
 ``` html
   <script src="https://static.szy.cn/javascript/vendor/log/szyreport.min.js"></script>
   <script>
