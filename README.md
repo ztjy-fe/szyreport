@@ -4,7 +4,7 @@
 前端报数工具  
 
 
-## 安装使用
+### 安装使用
 
 1. 直接下载[https://static.szy.cn/javascript/vendor/log/szyreport.min.js](https://static.szy.cn/javascript/vendor/log/szyreport.min.js)使用  
 
@@ -18,15 +18,15 @@
         prefix:'alpha',// 测试环境'alpha'，线上环境''（选填）
         callback: () =>{} //reportEvent （选填）
       }
-      szyreport.reportPV(params);
-      szyreport.reportEvent(params)
+      szyreport.reportPV(params);// PV 报数
+      szyreport.reportEvent(params);// 埋点报数
   </script>
 ```
 2. 使用npm安装
 ``` bash
 $ npm install --save-dev szyreport
 ```
-页面中引入
+3.页面中引入
 
 ``` javascript
 // 使用common.js方式引入
