@@ -32,7 +32,7 @@ $ npm install --save-dev szyreport
 // 使用common.js方式引入
 const szyreport = require('szyreport')
 ```
-####或者：
+#### 或者：
 ```
 // 使用ES6方式引入
 import szyreport from 'szyreport'
