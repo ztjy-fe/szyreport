@@ -6,11 +6,27 @@
  * @param  {Function} callback
  */
 
-function Ajax(type, url, data, callback) {
+function Ajax(options) {
+	let opt = options || {};
+	console.log('333',opt)
+	// type, url, data, callback
+	// let ajaxParams1 = {
+	// 	method: 'post',
+	// 	url: url.dtlogUrl,
+	// 	data:opts.data,
+	// 	'success':(res) => {
+	// 		resolve(res)
+	// 	},
+	// 	'error': (res) => {
+	// 		reject(res)
+	// 	}
+	// }
 	// 创建ajax对象
 	var xhr = new XMLHttpRequest();
 
-	var type = type.toUpperCase();
+	var type = opt.type.toUpperCase();
+	var url = opt.url;
+	var data = opt.data;
 	// 用于清除缓存
 	var random = Math.random();
 	if(type === 'GET'){
@@ -36,7 +52,7 @@ function Ajax(type, url, data, callback) {
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status == 200){
-				callback(xhr.responseText);
+				opt.success(xhr.responseText);
 			}
 		}
 	}

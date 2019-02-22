@@ -70,61 +70,105 @@ function getUrl(prefix, prams) {
 	};
 }
 //PV 报数
-function reportPV(options, prefix) {
+function reportPV(options) {
 	const opts = options || {};
-	let params = Object.assign(opts, defaultParams());
-	sendEvent(prefix, params, 'sdo_bfn_pv')
+	let params = Object.assign(opts.data, defaultParams());
+	let data = {
+		prefix: opts.prefix,
+		data: params,
+		sdo_bfn: 'sdo_bfn_pv',
+	}
+	sendEvent(data);
 }
 
 //埋点报数
-function reportEvent(options, prefix, callback) {
+function reportEvent(options) {
 	const opts = options || {};
-	let params = Object.assign(opts, defaultParams());
-	sendEvent(prefix, params, 'sdo_bfn_event', callback)
-
+	let params = Object.assign(opts.data, defaultParams());
+	let data = {
+		prefix: opts.prefix,
+		data: params,
+		sdo_bfn: 'sdo_bfn_event',
+	}
+	if(opts.callback) {
+		data.callback = opts.callback
+	}
+	sendEvent(data)
 }
 
 // 发送ajax请求
-function sendEvent(prefix, params, sdo_bfn, callback) {
-	let url = getUrl(prefix, sdo_bfn);
+function sendEvent(options) {
+	const opts = options || {};
+	let url = getUrl(opts.prefix, opts.sdo_bfn);
+	if(opts.sdo_bfn === 'sdo_bfn_event') {
 
-	if(sdo_bfn === 'sdo_bfn_event') {
 		let p1 = new Promise((resolve, reject) => {
+			let ajaxParams = {
+				type: 'get',
+				url: url.aliyunUrl,
+				data:opts.data,
+				'success':(res) => {
+					resolve(res)
+				},
+				'error': (res) => {
+					reject(res)
+				}
+			}
 			//  发送阿里云服务器
-			Ajax('get', url.aliyunUrl, params, function(data){
-				resolve(data)
-			}, function(error){
-				reject(error)
-			});
+			console.log('2222', ajaxParams)
+			Ajax(ajaxParams);
 		})
+
 
 		let p2 = new Promise((resolve, reject) => {
+			let ajaxParams1 = {
+				type: 'post',
+				url: url.dtlogUrl,
+				data:opts.data,
+				'success':(res) => {
+					resolve(res)
+				},
+				'error': (res) => {
+					reject(res)
+				}
+			}
 			//  发送大数据服务器
-			Ajax('post', url.dtlogUrl, params, function(data){
-				resolve(data);
-			}, function(error){
-				reject(error);
-			});
+			Ajax(ajaxParams1);
 		})
 		Promise.all([p1, p2]).then((result) => {
-			callback && callback();
+			opts.callback && opts.callback();
 		}).catch((error) => {
-			callback && callback();
+			opts.callback && opts.callback();
 		})
 	} else {
 		//  发送阿里云服务器
-		Ajax('get', url.aliyunUrl, params, function(data){
-			console.log(data);
-		}, function(error){
-			console.log(error);
-		});
+		let ajaxParams = {
+			type: 'get',
+			url: url.aliyunUrl,
+			data:opts.data,
+			'success':(res) => {
+				console.log(res);
+			},
+			'error': (res) => {
+				console.log(res);
+			}
+		}
 
 		//  发送大数据服务器
-		Ajax('post', url.dtlogUrl, params, function(data){
-			console.log(data);
-		}, function(error){
-			console.log(error);
-		});
+		Ajax(ajaxParams);
+		let ajaxParams1 = {
+			type: 'post',
+			url: url.dtlogUrl,
+			data:opts.data,
+			'success':(res) => {
+				console.log(res)
+			},
+			'error': (res) => {
+				console.log(res)
+			}
+		}
+
+		Ajax(ajaxParams1);
 	}
 }
 
