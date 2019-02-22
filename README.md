@@ -30,7 +30,7 @@ $ npm install --save-dev szyreport
 
 ``` javascript
 // 使用common.js方式引入
-const szyreport = require('szyreport')
+const szyreport = require('szyreport');
 ```
 #### 或者：
 ```
