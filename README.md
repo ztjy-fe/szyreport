@@ -26,7 +26,7 @@
 ``` bash
 $ npm install --save-dev szyreport
 ```
-3. 1. 页面中引入
+3.1. 页面中引入
 
 ``` javascript
 // 使用common.js方式引入
@@ -37,7 +37,7 @@ const szyreport = require('szyreport')
 // 使用ES6方式引入
 import szyreport from 'szyreport'
 ```
-3. 2. 调用：
+3.2. 调用：
 ```
 let params = {
     data: {}, //页面报数参数（必填）
