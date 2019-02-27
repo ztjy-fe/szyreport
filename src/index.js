@@ -7,7 +7,7 @@
 const getPlatform = require('./getPlatform.js')
 const getOsVersion = require('./getOsVersion.js')
 const Ajax = require('./ajax')
-
+const dev_id = getCookie('dev_id');
 /**
  * @desc   公共参数部分
  * @return {Object}
@@ -15,7 +15,6 @@ const Ajax = require('./ajax')
 function defaultParams() {
 	let os = getPlatform(); // 操作系统
 	let	os_ver = getOsVersion(); // 系统版本
-	let dev_id = getCookie('dev_id');
 	return {
 		'platf': 3, //平台
 		'dev_id': dev_id,//设备ID
@@ -73,7 +72,11 @@ function setCookie(cname, cvalue, exdays) {
 	var expires = 'expires=' + d.toUTCString();
 	document.cookie = cname + '=' + cvalue + '; ' + expires+'; path=/'
 }
-setCookie('dev_id', generateUUID(), 7)
+//  如果dev_id  不存在设置cookie
+if(!dev_id) {
+	setCookie('dev_id', generateUUID(), 30)
+}
+
 /**
  * @desc   生成uuid
  * @param  {String} cname
