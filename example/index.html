@@ -17,6 +17,7 @@
 	<script src='../dist/szyreport.min.js'></script>
 	<script>
 		let params = {
+			'school_id':'42398493284',
 			'status': 2, //状态
 			'trial': '',//试看
 			'stay_time': '',//时长
@@ -30,15 +31,15 @@
 			'f_page_location': '',//来路页面位置
 		};
 		let prefix = 'alpha'
-		szyreport.reportPV({ //pv 报数
-			prefix: prefix,// 测试环境 'alpha', 线上环境不传或者传''
-			data:params // 页面报数参数
-		});
+		// szyreport.reportPV({ //pv 报数
+		// 	prefix: prefix,// 测试环境 'alpha', 线上环境不传或者传''
+		// 	data:params // 页面报数参数
+		// });
 		szyreport.reportEvent({ //  埋点报数
 			prefix: prefix,// 测试环境 'alpha', 线上环境不传或者传''
 			data: params,// 页面报数参数
 			callback: () => { // 埋点报数支持 回调函数 （可选项）
-				console.log(5555)
+				console.log(666)
 			}
 		});
 	</script>

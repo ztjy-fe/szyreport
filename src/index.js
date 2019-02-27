@@ -15,9 +15,10 @@ const Ajax = require('./ajax')
 function defaultParams() {
 	let os = getPlatform(); // 操作系统
 	let	os_ver = getOsVersion(); // 系统版本
+	let dev_id = getCookie('dev_id');
 	return {
 		'platf': 3, //平台
-		'dev_id': '',//设备ID
+		'dev_id': dev_id,//设备ID
 		'imei': '',//手机串号
 		'mac': '',//硬件编号
 		'adid': '',//AndroidID
@@ -47,6 +48,54 @@ function defaultParams() {
 }
 
 /**
+ * @desc   生成uuid
+ * @return {String} uuid
+ */
+function generateUUID() {
+	var d = new Date().getTime();
+	var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		var r = (d + Math.random() * 16) % 16 | 0;
+		d = Math.floor(d / 16);
+		return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+	});
+	return uuid;
+}
+
+/**
+ * @desc   生成uuid
+ * @param  {String} cname
+ * @param  {String} cvalue
+ * @param  {String} exdays
+ */
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = 'expires=' + d.toUTCString();
+	document.cookie = cname + '=' + cvalue + '; ' + expires+'; path=/'
+}
+setCookie('dev_id', generateUUID(), 7)
+/**
+ * @desc   生成uuid
+ * @param  {String} cname
+ */
+function getCookie(name) {
+	var arr;
+	var reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+	if (arr = document.cookie.match(reg)){
+		return unescape(arr[2]);
+	} else {
+		return '';
+	}
+}
+/**
+ * @desc   删除 cookie
+ * @param  {String} name
+ */
+function clearCookie(name) {
+	setCookie(name, "", -1);
+}
+
+/**
  * @desc   getUrl函数 获取当前的url
  * @param  {String} prefix
  * @return {Object}
@@ -72,7 +121,7 @@ function getUrl(prefix, prams) {
 //PV 报数
 function reportPV(options) {
 	const opts = options || {};
-	let params = Object.assign(opts.data, defaultParams());
+	let params = Object.assign(defaultParams(), opts.data);
 	let data = {
 		prefix: opts.prefix,
 		data: params,
@@ -84,7 +133,7 @@ function reportPV(options) {
 //埋点报数
 function reportEvent(options) {
 	const opts = options || {};
-	let params = Object.assign(opts.data, defaultParams());
+	let params = Object.assign(defaultParams(),opts.data);
 	let data = {
 		prefix: opts.prefix,
 		data: params,
