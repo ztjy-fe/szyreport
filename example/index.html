@@ -16,6 +16,7 @@
 	<body>
 	<script src='../dist/szyreport.min.js'></script>
 	<script>
+		// pv 报数所需要的参数
 		let params = {
 			'status': 2, //状态
 			'trial': '',//试看
@@ -28,6 +29,9 @@
 			'f_page': '',//来路页面
 			'f_page_id': '',//来路页面ID
 			'f_page_location': '',//来路页面位置
+			'student_id': '',//学生ID
+			'school_id': '',//学校ID
+			'user_id': '',//账号ID
 		};
 		let prefix = 'alpha'
 		szyreport.reportPV({ //pv 报数
