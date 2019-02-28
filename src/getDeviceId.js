@@ -8,8 +8,8 @@ const setCookie = require('./setCookie.js')
 function getDeviceId() {
 	let deviceId = getCookie('userDevId');
 	if(!deviceId) {
-		UUID = generateUUID()
-		setCookie('userDevId', UUID, 30)
+		deviceId = generateUUID()
+		setCookie('userDevId', deviceId, 30)
 	}
 	return deviceId
 }
