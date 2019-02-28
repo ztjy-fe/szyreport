@@ -21,7 +21,7 @@ $ npm install --save-dev szyreport
 3.1. 页面中引入
 
 ``` javascript
-// 使用common.js方式引入
+// 使用CommonJs方式引入
 const szyreport = require('szyreport');
 ```
 #### 或者：
