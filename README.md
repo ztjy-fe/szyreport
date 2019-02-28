@@ -64,19 +64,17 @@ import szyreport from 'szyreport'
         'user_id': '',//账号ID(必填)
     };
     
-    // pv报数 调用参数
-    let pvParams = {
+    // PV 报数
+    szyreport.reportPV({
         data: pvData, //页面报数参数（必填）
         prefix:'alpha',// 测试环境'alpha'，线上环境''（选填）
-    }
+    });
     
-    // event报数 调用参数
-    let eventParams = {
+    // 埋点报数
+    szyreport.reportEvent({
         data: eventData, //页面报数参数（必填）
         prefix:'alpha',// 测试环境'alpha'，线上环境''（选填）
         callback: () =>{} //埋点报数时需要的回调函数 （选填）
-    }
-    szyreport.reportPV(pvParams);// PV 报数
-    szyreport.reportEvent(eventParams);// 埋点报数
+    });
 
 ```
