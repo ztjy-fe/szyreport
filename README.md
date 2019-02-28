@@ -31,7 +31,7 @@ const szyreport = require('szyreport');
 // 使用ES6方式引入
 import szyreport from 'szyreport'
 ```
-3.2. 调用：
+### 调用：
 ```
     // pv报数 参数
     const pvData = {
