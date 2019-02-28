@@ -33,7 +33,7 @@ import szyreport from 'szyreport'
 ```
 ### 调用：
 ```
-    // pv报数 参数
+    // pv报数 页面报数参数
     const pvData = {
         'status': '', //状态
         'trial': '',//试看(选填)
@@ -50,7 +50,7 @@ import szyreport from 'szyreport'
         'school_id': '',//学校ID(必填)
         'user_id': '',//账号ID(必填)
      };
-    // event报数 参数
+    // event报数 页面报数参数
     const eventData = {
         'event_id': '', //事件ID
         'obj_type': '',//事件对象类型(选填)
@@ -64,10 +64,13 @@ import szyreport from 'szyreport'
         'user_id': '',//账号ID(必填)
     };
     
+    // pv报数 调用参数
     let pvParams = {
         data: pvData, //页面报数参数（必填）
         prefix:'alpha',// 测试环境'alpha'，线上环境''（选填）
     }
+    
+    // event报数 调用参数
     let eventParams = {
         data: eventData, //页面报数参数（必填）
         prefix:'alpha',// 测试环境'alpha'，线上环境''（选填）
