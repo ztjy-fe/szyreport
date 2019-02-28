@@ -12,9 +12,7 @@
 
 ``` html
   <script src="https://static.szy.cn/javascript/vendor/log/szyreport.min.js"></script>
-  <script>
-
-  </script>
+  
 ```
 3. 使用npm安装
 ``` bash

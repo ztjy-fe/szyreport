@@ -6,13 +6,12 @@ const setCookie = require('./setCookie.js')
  */
 
 function getDeviceId() {
-	let deviceId = getCookie('dev_id');
-	if(deviceId) {
-		return deviceId;
-	} else {
-		setCookie('dev_id', generateUUID(), 30)
-		return getCookie('dev_id');
+	let deviceId = getCookie('userDevId');
+	if(!deviceId) {
+		deviceId = generateUUID()
+		setCookie('userDevId', deviceId, 30)
 	}
+	return deviceId
 }
 
 /**
