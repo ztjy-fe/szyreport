@@ -6,8 +6,8 @@
  */
 const getPlatform = require('./getPlatform.js')
 const getOsVersion = require('./getOsVersion.js')
-const Ajax = require('./ajax')
-const dev_id = getCookie('dev_id');
+const Ajax = require('./ajax.js')
+const getDeviceId = require('./getDeviceId.js')
 /**
  * @desc   公共参数部分
  * @return {Object}
@@ -15,10 +15,11 @@ const dev_id = getCookie('dev_id');
 function defaultParams() {
 	let os = getPlatform(); // 操作系统
 	let	os_ver = getOsVersion(); // 系统版本
+	let dev_id = getDeviceId();// 设备ID
 	return {
 		'platf': 3, //平台
-		'dev_id': dev_id,//设备ID
-		'imei': '',//手机串号
+		'dev_id': dev_id,// 设备ID
+		'imei': '',// 手机串号
 		'mac': '',//硬件编号
 		'adid': '',//AndroidID
 		'mtype': '',// 设备型号
@@ -46,57 +47,6 @@ function defaultParams() {
 
 }
 
-/**
- * @desc   生成uuid
- * @return {String} uuid
- */
-function generateUUID() {
-	var d = new Date().getTime();
-	var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-		var r = (d + Math.random() * 16) % 16 | 0;
-		d = Math.floor(d / 16);
-		return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
-	});
-	return uuid;
-}
-
-/**
- * @desc   生成uuid
- * @param  {String} cname
- * @param  {String} cvalue
- * @param  {String} exdays
- */
-function setCookie(cname, cvalue, exdays) {
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-	var expires = 'expires=' + d.toUTCString();
-	document.cookie = cname + '=' + cvalue + '; ' + expires+'; path=/'
-}
-//  如果dev_id  不存在设置cookie
-if(!dev_id) {
-	setCookie('dev_id', generateUUID(), 30)
-}
-
-/**
- * @desc   生成uuid
- * @param  {String} cname
- */
-function getCookie(name) {
-	var arr;
-	var reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-	if (arr = document.cookie.match(reg)){
-		return unescape(arr[2]);
-	} else {
-		return '';
-	}
-}
-/**
- * @desc   删除 cookie
- * @param  {String} name
- */
-function clearCookie(name) {
-	setCookie(name, "", -1);
-}
 
 /**
  * @desc   getUrl函数 获取当前的url
@@ -196,10 +146,10 @@ function sendEvent(options) {
 			url: url.aliyunUrl,
 			data:opts.data,
 			'success':(res) => {
-				console.log(res);
+				// console.log(res);
 			},
 			'error': (res) => {
-				console.log(res);
+				// console.log(res);
 			}
 		});
 		//  发送大数据服务器
@@ -209,15 +159,14 @@ function sendEvent(options) {
 			url: url.dtlogUrl,
 			data:opts.data,
 			'success':(res) => {
-				console.log(res)
+				// console.log(res)
 			},
 			'error': (res) => {
-				console.log(res)
+				// console.log(res)
 			}
 		});
 	}
 }
-
 
 module.exports = {
 	reportPV,
