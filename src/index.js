@@ -25,12 +25,12 @@ function defaultParams() {
 		'mtype': '',// 设备型号
 		'app_ver': '',//App版本
 		'app_gid': '',//App渠道
-		'login_status': '',//登录状态
+		'login_status': '1',//登录状态
 		'role': '',//账号角色
-		'user_id': '',//账号ID
-		'baby_id': '',//宝宝ID
-		'student_id': '',//学生ID
-		'school_id': '',//学校ID
+		'user_id': '80b480aa8bf764302670', //账号ID
+		'baby_id': 'd4518e7e71f44cb39768', //宝宝ID
+		'student_id': 'f6adc4da59cdea10ec2b', //学生ID
+		'school_id': '9e663d14e91a07ce9114', //学校ID
 		'adcode': '',//地区编码
 		'pay_state': '',//付费状态
 		'logtime': '',//日志时间

@@ -43,10 +43,7 @@ import szyreport from 'szyreport'
         'parm': '',//自定义参数(选填)
         'f_page': '',//来路页面(选填)
         'f_page_id': '',//来路页面ID(选填)
-        'f_page_location': '',//来路页面位置(选填)
-        'student_id': '',//学生ID(必填)
-        'school_id': '',//学校ID(必填)
-        'user_id': '',//账号ID(必填)
+        'f_page_location': ''//来路页面位置(选填)
      };
     // event报数 页面报数参数
     const eventData = {
@@ -56,10 +53,7 @@ import szyreport from 'szyreport'
         'parm': '',//自定义参数(选填)
         'f_page': '',//来路页面(选填)
         'f_page_id': '',//来路页面ID(选填)
-        'f_page_location': '',//来路页面位置(选填)
-        'student_id': '',//学生ID(必填)
-        'school_id': '',//学校ID(必填)
-        'user_id': '',//账号ID(必填)
+        'f_page_location': ''//来路页面位置(选填)
     };
     
     // PV 报数
