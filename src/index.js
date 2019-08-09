@@ -77,7 +77,11 @@ function reportPV(options) {
 	let params = Object.assign(defaultParams(), opts.data);
 	let data = {
 		prefix: opts.prefix,
-		data: params,
+		data: {
+			__logs__:[params],
+			__source__: '',
+			__topic__: ''
+		},
 		sdo_bfn: 'sdo_bfn_pv',
 	}
 	sendEvent(data);
